@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "763639925667",
+    "firebase_url": "https://tickettapper-4c325.firebaseio.com",
+    "project_id": "tickettapper-4c325",
+    "storage_bucket": "tickettapper-4c325.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763639925667:android:49632148d5b14bc5",
+        "android_client_info": {
+          "package_name": "com.example.tickettapper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763639925667-g91a891ec4hsiggaqvs0ic32edc1pij3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeUyBQfeO0Jy3_N76gvQzZL512fMZ9w4Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
