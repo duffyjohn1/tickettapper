@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'stacked_icons.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart';
 
 
@@ -97,7 +97,13 @@ class  _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 20.0, top: 10.0),
                         child: GestureDetector(
-                         // onTap: HomePage,
+                          onTap:() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                  ));
+                          },
                           child: new Container(
                               alignment: Alignment.center,
                               height: 60.0,
@@ -131,7 +137,7 @@ class  _LoginPageState extends State<LoginPage> {
           )
         );
   }
-  /*
+
   Future<void> signIn() async {
     final formState = _formKey.currentState;
     if (formState.validate()){
@@ -145,5 +151,5 @@ class  _LoginPageState extends State<LoginPage> {
       }
     }
   }
-  */
+
 }
