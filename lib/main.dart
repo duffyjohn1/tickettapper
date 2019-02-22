@@ -25,6 +25,8 @@ class TicketTapper extends StatelessWidget {
 
 
 class WelcomePage extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -123,14 +125,16 @@ class WelcomePage extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         handleSignIn();
-                        /*
+
+                        /* This attempts to ensure user can only move forward once signed in
+
                         if (user != null) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => HomePage(),
                                 ));
-                        } */
+                        }*/
                       },
                     child: new Container(
                         alignment: Alignment.center,
