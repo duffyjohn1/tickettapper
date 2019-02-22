@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tickettapper/InHome/plan_route.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -115,34 +113,24 @@ class MainContent extends StatelessWidget {
                           ),
 
                         new Expanded(
-                          child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                            builder: (context) => Maps(),
-                            ));
-                          }
-                          )),
-                          new Expanded(
                             child: new Container(
-                            height: 100.0,
-                            decoration: new BoxDecoration(
-                                borderRadius: new BorderRadius.circular(20.0),
-                                color: Color(0xFF18D191)
-                                ),
-                            child: new Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                new Icon(
-                                  Icons.map,
-                                  color: Colors.black,
-                                  ),
-                                new Text("Plan Route",
-                                             style:new TextStyle(color: Colors.white))
-                              ],
-                              )
-                            )
+                                height: 100.0,
+                                decoration: new BoxDecoration(
+                                    borderRadius: new BorderRadius.circular(20.0),
+                                    color: Color(0xFF18D191)
+                                    ),
+                                child: new Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    new Icon(
+                                      Icons.map,
+                                      color: Colors.black,
+                                      ),
+                                    new Text("Plan Route",
+                                                 style:new TextStyle(color: Colors.white))
+                                  ],
+                                  )
+                                )
                             )
                       ]
                       ),
