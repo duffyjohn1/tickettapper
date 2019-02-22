@@ -1,5 +1,3 @@
-// Padding needs to be changed
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'stacked_icons.dart';
@@ -65,7 +63,7 @@ class  _LoginPageState extends State<LoginPage> {
                                         return 'Provide an email';
                                       }
                                     },
-                                    onSaved:  (input) => _email = input,
+                                    onSaved: (input) => _email = input,
                                     ),
                                   ),
                                 ),
@@ -97,13 +95,14 @@ class  _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 20.0, top: 10.0),
                         child: GestureDetector(
-                          onTap:() {
+                          onTap: signIn
+                          /*{
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomePage(),
+                                  builder: (context) => signIn,
                                   ));
-                          },
+                          }*/,
                           child: new Container(
                               alignment: Alignment.center,
                               height: 60.0,
@@ -138,7 +137,7 @@ class  _LoginPageState extends State<LoginPage> {
         );
   }
 
-  Future<void> signIn() async {
+  void signIn() async {
     final formState = _formKey.currentState;
     if (formState.validate()){
       formState.save();
