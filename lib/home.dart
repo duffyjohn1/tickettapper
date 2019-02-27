@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:tickettapper/InHome/add_card.dart';
+import 'package:tickettapper/InHome/attractions.dart';
 import 'package:tickettapper/InHome/pay.dart';
+import 'package:tickettapper/InHome/plan_route.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => new _HomePageState();
+  HomePageState createState() => new HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -107,17 +110,26 @@ class MainContent extends StatelessWidget {
                         decoration: new BoxDecoration(
                             borderRadius: new BorderRadius.circular(20.0),
                             color: Color(0xFF18D191)),
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new Icon(
-                              Icons.map,
-                              color: Colors.black,
-                            ),
-                            new Text("Plan Route",
-                                style: new TextStyle(color: Colors.white))
-                          ],
-                        )))
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FireMap(),
+                                    ));
+                            },
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                new Icon(
+                                  Icons.map,
+                                  color: Colors.black,
+                                  ),
+                                new Text("Plan Route",
+                                             style: new TextStyle(
+                                                 color: Colors.white))
+                              ],
+                              ))))
               ]),
               new SizedBox(
                 height: 20.0,
@@ -132,26 +144,26 @@ class MainContent extends StatelessWidget {
                         decoration: new BoxDecoration(
                             borderRadius: new BorderRadius.circular(20.0),
                             color: Color(0xFFFFCE56)),
-    child: GestureDetector(
-    onTap: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) => Stripe_pay(),
-    ));
-    },
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new Icon(
-                              Icons.directions_bus,
-                              color: Colors.black,
-                            ),
-                            new Text("Add Card",
-                                style: new TextStyle(color: Colors.white))
-                          ],
-                          )
-    )))
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => StripeApi(),
+                                    ));
+                            },
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                new Icon(
+                                  Icons.credit_card,
+                                  color: Colors.black,
+                                  ),
+                                new Text("Add Card",
+                                             style: new TextStyle(
+                                                 color: Colors.white))
+                              ],
+                              ))))
               ]),
               new SizedBox(
                 height: 15.0,

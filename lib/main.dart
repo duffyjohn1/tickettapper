@@ -126,15 +126,12 @@ class WelcomePage extends StatelessWidget {
                       onTap: () {
                         handleSignIn();
 
-                        /* This attempts to ensure user can only move forward once signed in
-
-                        if (user != null) {
+                        // This attempts to ensure user can only move forward once signed in
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => HomePage(),
                                 ));
-                        }*/
                       },
                     child: new Container(
                         alignment: Alignment.center,

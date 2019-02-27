@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
-//import 'package:url_launcher/url_launcher.dart';
+import 'package:tickettapper/InHome/qr_gen.dart';
+import 'dart:io';
+
 
 class MyNFC extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class MyNFC extends StatefulWidget {
 class _MyNFCState extends State<MyNFC> {
   NfcData _nfcData;
   NFCStatus _status;
+  var x = 'False';
 
   @override
   void initState() {
@@ -42,6 +45,12 @@ class _MyNFCState extends State<MyNFC> {
   Future<void> stopNFC() async {
     NfcData response;
 
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => GenerateScreen()),
+      );
+
     try {
       print('NFC: Stop scan by user');
       response = await FlutterNfcReader.stop;
@@ -66,7 +75,9 @@ class _MyNFCState extends State<MyNFC> {
     return new MaterialApp(
       home: new Scaffold(
           appBar: new AppBar(
-            title: const Text('Plugin example app'),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            iconTheme: new IconThemeData(color: Colors.white),
             ),
           body: new SafeArea(
             top: true,
@@ -74,50 +85,41 @@ class _MyNFCState extends State<MyNFC> {
             child: new Center(
               child: ListView(
                 children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      new Text(
+                        "Ticket Tapper",
+                        style: new TextStyle(
+                          fontSize: 30.0,
+                          ),
+                        textAlign: TextAlign.left,
+                        ),
+                    ],
+                    ),
                   new SizedBox(
-                    height: 10.0,
-                    ),
-                  new Text(
-                    '- NFC Status -\n',
-                    textAlign: TextAlign.center,
-                    ),
-                  new Text(
-                    _nfcData != null ? 'Status: ${_nfcData.status}' : '',
-                    textAlign: TextAlign.center,
-                    ),
-                  new Text(
-                    _nfcData != null ? 'Identifier: ${_nfcData.id}' : '',
-                    textAlign: TextAlign.center,
-                    ),
-                  new Text(
-                    _nfcData != null ? 'Content: ${_nfcData.content}' : '',
-                    textAlign: TextAlign.center,
-                    ),
-                  new Text(
-                    _nfcData != null ? 'Error: ${_nfcData.error}' : '',
-                    textAlign: TextAlign.center,
-                    ),
-                  new RaisedButton(
-                    child: Text('Start NFC'),
-                    textColor: Colors.white,
-                    color: Colors.red,
-                    onPressed: () {
-                      startNFC();
-                    },
-                    ),
-                  new RaisedButton(
-                    textColor: Colors.white,
-                    color: Colors.red,
-                    child: Text('Stop NFC'),
-                    onPressed: () {
-                      stopNFC();
-                    },
+                    height: 200.0,
                     ),
 
+                  new RaisedButton(
+
+                      child: Text('Start NFC'),
+                      textColor: Colors.white,
+                      color: Colors.red,
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30.0)),
+                      onPressed: () {
+                        startNFC();
+                        //sleep(const Duration(seconds:5));
+                        if (_nfcData != null) {
+                          stopNFC();
+                        }
+                      }
+                      ),
                 ],
                 ),
               ),
             )),
       );
   }
+
 }
