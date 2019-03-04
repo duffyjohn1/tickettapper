@@ -33,7 +33,7 @@ class _MyNFCState extends State<MyNFC> {
 
     try {
       print('NFC: Scan readed NFC tag');
-      response = await FlutterNfcReader.read;
+      response = (await FlutterNfcReader.read) as NfcData;
     } on PlatformException {
       print('NFC: Scan stopped exception');
     }
