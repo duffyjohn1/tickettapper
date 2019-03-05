@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 import 'package:tickettapper/InHome/qr_gen.dart';
@@ -33,7 +34,7 @@ class _MyNFCState extends State<MyNFC> {
 
     try {
       print('NFC: Scan readed NFC tag');
-      response = await FlutterNfcReader.read;
+      response = (await FlutterNfcReader.read) as NfcData;
     } on PlatformException {
       print('NFC: Scan stopped exception');
     }
@@ -73,6 +74,7 @@ class _MyNFCState extends State<MyNFC> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: new Scaffold(
           appBar: new AppBar(
             backgroundColor: Colors.transparent,
@@ -92,10 +94,55 @@ class _MyNFCState extends State<MyNFC> {
                         style: new TextStyle(
                           fontSize: 30.0,
                           ),
-                        textAlign: TextAlign.left,
+                        textAlign: TextAlign.center,
                         ),
                     ],
                     ),
+            new SizedBox(
+              height: 15.0,
+            ),
+            new Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                new Container(
+                  height: 60.0,
+                  width: 60.0,
+                  decoration: new BoxDecoration(
+                      borderRadius: new BorderRadius.circular(50.0),
+                      color: Color(0xFF18D191)),
+                  child: new Icon(
+                    Icons.local_offer,
+                    color: Colors.black,
+                  ),
+                ),
+                new Container(
+                  margin: new EdgeInsets.only(right: 50.0, top: 50.0),
+                  height: 60.0,
+                  width: 60.0,
+                  decoration: new BoxDecoration(
+                      borderRadius: new BorderRadius.circular(50.0),
+                      color: Color(0xFFFC6A7F)),
+                  child: new Icon(
+                    Icons.home,
+                    color: Colors.black,
+                  ),
+                ),
+                new Container(
+                  margin: new EdgeInsets.only(left: 30.0, top: 50.0),
+                  height: 60.0,
+                  width: 60.0,
+                  decoration: new BoxDecoration(
+                      borderRadius: new BorderRadius.circular(50.0),
+                      color: Color(0xFFFFCE56)),
+                  child: new Icon(
+                    Icons.directions_bus,
+                    color: Colors.black,
+                  ),
+                ),
+
+              ],
+            ),
+
                   new SizedBox(
                     height: 200.0,
                     ),
@@ -106,7 +153,7 @@ class _MyNFCState extends State<MyNFC> {
                       textColor: Colors.white,
                       color: Colors.red,
                       shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
+                          borderRadius: new BorderRadius.circular(150.0)),
                       onPressed: () {
                         startNFC();
                         //sleep(const Duration(seconds:5));
@@ -123,3 +170,4 @@ class _MyNFCState extends State<MyNFC> {
   }
 
 }
+
