@@ -3,6 +3,7 @@ import 'package:tickettapper/InHome/add_card.dart';
 import 'package:tickettapper/InHome/attractions.dart';
 import 'package:tickettapper/InHome/pay.dart';
 import 'package:tickettapper/InHome/plan_route.dart';
+import 'package:tickettapper/Payment/Pay_main.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -149,7 +150,7 @@ class MainContent extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => StripeApi(),
+                                    builder: (context) => PayScreen(),
                                     ));
                             },
                             child: new Column(
@@ -159,7 +160,7 @@ class MainContent extends StatelessWidget {
                                   Icons.credit_card,
                                   color: Colors.black,
                                   ),
-                                new Text("Add Card",
+                                new Text("Card Details",
                                              style: new TextStyle(
                                                  color: Colors.white))
                               ],
