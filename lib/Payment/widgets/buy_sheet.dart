@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tickettapper/InHome/pay.dart';
 import 'package:tickettapper/InHome/qr_gen.dart';
 import 'package:tickettapper/Payment/Colors.dart';
 import 'package:tickettapper/Payment/transaction_service.dart';
@@ -46,6 +48,7 @@ class BuySheetState extends State<BuySheet> {
   bool get _applePayMerchantIdSet => widget.applePayMerchantId != "REPLACE_ME";
 
   void showOrderSheet() async {
+    sleep(const Duration(seconds:2));
     var selection =
         await custom_modal_bottom_sheet.showModalBottomSheet<PaymentType>(
             context: BuySheet.scaffoldKey.currentState.context,
@@ -259,32 +262,87 @@ class BuySheetState extends State<BuySheet> {
     }
   }
 
+  NFCpay(){
+    //MyNFCState().startNFC();
+    showOrderSheet();
+  }
+
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData(canvasColor: Colors.transparent),
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: mainBackgroundColor,
+          appBar: new AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            iconTheme: new IconThemeData(color: Colors.white),
+            ),
           key: BuySheet.scaffoldKey,
           body: Builder(
+
             builder: (context) => Center(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      child: Image(image: AssetImage("assets/iconCookie.png")),
-                    ),
-                    Container(
-                      child: Text(
-                        'Super Cookie',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                        ),
+                    new Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        new Container(
+                          height: 80.0,
+                          width: 80.0,
+                          decoration: new BoxDecoration(
+                              borderRadius: new BorderRadius.circular(50.0),
+                              color: Color(0xFF18D191)),
+                          child: new Icon(
+                            Icons.euro_symbol,
+                            color: Colors.black,
+                            ),
+                          ),
+                        new Container(
+                          margin: new EdgeInsets.only(right: 250.0, top: 50.0),
+                          height: 80.0,
+                          width: 80.0,
+                          decoration: new BoxDecoration(
+                              borderRadius: new BorderRadius.circular(50.0),
+                              color: Color(0xFFFC6A7F)),
+                          child: new Icon(
+                            Icons.home,
+                            color: Colors.black,
+                            ),
+                          ),
+                        new Container(
+                          margin: new EdgeInsets.only(left: 250.0, top: 50.0),
+                          height: 80.0,
+                          width: 80.0,
+                          decoration: new BoxDecoration(
+                              borderRadius: new BorderRadius.circular(50.0),
+                              color: Color(0xFFFFCE56)),
+                          child: new Icon(
+                            Icons.directions_bus,
+                            color: Colors.black,
+                            ),
+                          ),
+                      ],
                       ),
-                    ),
+                    new Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0, bottom: 80.0),
+                          child: new Text(
+                            "Ticket Tapper",
+                            style: new TextStyle(fontSize: 30.0),
+                            ),
+                          )
+                      ],
+                      ),
+                    new SizedBox(
+                      height: 20.0,
+                      ),
                     Container(
                       margin: EdgeInsets.only(top: 32),
                       child:
-                          CookieButton(text: "Start NFC", onPressed: showOrderSheet),
+                          CookieButton(text: "Start NFC",
+                                           onPressed: showOrderSheet), // Try NFC pay
                     ),
                   ],
                 )),

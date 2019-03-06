@@ -85,7 +85,7 @@ class MainContent extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MyNFC(),
+                                    builder: (context) => PayScreen(),
                                   ));
                             },
                             child: new Column(

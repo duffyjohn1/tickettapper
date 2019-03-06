@@ -12,11 +12,11 @@ import 'package:tickettapper/Payment/widgets/buy_sheet.dart';
 
 class MyNFC extends StatefulWidget {
   @override
-  _MyNFCState createState() => new _MyNFCState();
+  MyNFCState createState() => new MyNFCState();
 }
 
-class _MyNFCState extends State<MyNFC> {
-  NfcData _nfcData;
+class MyNFCState extends State<MyNFC> {
+  NfcData nfcData;
   NFCStatus _status;
   var x = 'False';
 
@@ -31,8 +31,8 @@ class _MyNFCState extends State<MyNFC> {
     NfcData response;
 
     setState(() {
-      _nfcData = NfcData();
-      _nfcData.status = NFCStatus.reading;
+      nfcData = NfcData();
+      nfcData.status = NFCStatus.reading;
     });
 
     print('NFC: Scan started');
@@ -44,18 +44,16 @@ class _MyNFCState extends State<MyNFC> {
       print('NFC: Scan stopped exception');
     }
     setState(() {
-      _nfcData = response;
+      nfcData = response;
     });
+    if (nfcData != null) {
+      stopNFC();
+    }
   }
 
   Future<void> stopNFC() async {
     NfcData response;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => PayScreen()),
-      );
 
     try {
       print('NFC: Stop scan by user');
@@ -72,7 +70,7 @@ class _MyNFCState extends State<MyNFC> {
     }
 
     setState(() {
-      _nfcData = response;
+      nfcData = response;
     });
   }
 
@@ -158,10 +156,8 @@ class _MyNFCState extends State<MyNFC> {
                       onPressed: () {
                         //BuySheetState().showOrderSheet();
                         startNFC();
-                        //sleep(const Duration(seconds:5));
-                        if (_nfcData != null) {
-                          stopNFC();
-                        }
+                        //
+
                       }
                       ),
                 ],

@@ -17,6 +17,6 @@ class CookieButton extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 18))),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-          color: mainButtonColor,
+          color: Colors.black,
           onPressed: onPressed));
 }

@@ -16,13 +16,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_database: 2.0.1+1  # Could use cloud firestore either
+  firebase_database: 2.0.1+1
   firebase_auth: 0.8.1+1
-  location: 2.0.0
-  #firebase_core: 0.3.0+2
+  location: 2.0.0  # No package test
 
   rxdart: 0.20.0
-  square_in_app_payments: 1.1.0
+  square_in_app_payments: 1.1.0 # No package test
   http: 0.12.0
   uuid: 2.0.0
 
