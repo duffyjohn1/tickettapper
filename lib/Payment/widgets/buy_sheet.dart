@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tickettapper/InHome/qr_gen.dart';
 import 'package:tickettapper/Payment/Colors.dart';
 import 'package:tickettapper/Payment/transaction_service.dart';
 import 'package:uuid/uuid.dart';
@@ -38,13 +39,13 @@ class BuySheet extends StatefulWidget {
 class BuySheetState extends State<BuySheet> {
   ApplePayStatus _applePayStatus = ApplePayStatus.unknown;
 
-  bool get _chargeServerHostReplaced => chargeServerHost != "REPLACE_ME";
+  bool get _chargeServerHostReplaced => chargeServerHost != "https://tickettapper.herokuapp.com/chargeForCookie";
 
-  bool get _squareLocationSet => widget.squareLocationId != "REPLACE_ME";
+  bool get _squareLocationSet => widget.squareLocationId != "BT4ZW0W2NM5JG";
 
   bool get _applePayMerchantIdSet => widget.applePayMerchantId != "REPLACE_ME";
 
-  void _showOrderSheet() async {
+  void showOrderSheet() async {
     var selection =
         await custom_modal_bottom_sheet.showModalBottomSheet<PaymentType>(
             context: BuySheet.scaffoldKey.currentState.context,
@@ -52,7 +53,7 @@ class BuySheetState extends State<BuySheet> {
 
     switch (selection) {
       case PaymentType.cardPayment:
-        await _onStartCardEntryFlow();
+        await onStartCardEntryFlow();
         break;
       case PaymentType.googlePay:
         if (_squareLocationSet && widget.googlePayEnabled) {
@@ -74,25 +75,25 @@ class BuySheetState extends State<BuySheet> {
   void printCurlCommand(String nonce) {
     var uuid = Uuid().v4();
     print(
-        'curl --request POST https://connect.squareup.com/v2/locations/SQUARE_LOCATION_ID/transactions \\'
+        'curl --request POST https://connect.squareup.com/v2/locations/BT4ZW0W2NM5JG/transactions \\'
         '--header \"Content-Type: application/json\" \\'
-        '--header \"Authorization: Bearer YOUR_ACCESS_TOKEN\" \\'
+        '--header \"Authorization: Bearer sq0atp-RP1Wo5gjDyH4ujKywtW3WA\" \\'
         '--header \"Accept: application/json\" \\'
         '--data \'{'
         '\"idempotency_key\": \"$uuid\",'
         '\"amount_money\": {'
         '\"amount\": $cookieAmount,'
         '\"currency\": \"Eur\"},'
-        '\"card_nonce\": \"$nonce\"'
+        '\"card_nonce\": \"cnon:CBASEOUR395ND0AiJDZh7nBpCuU\"'
         '}\'');
   }
 
-  void _showUrlNotSetAndPrintCurlCommand(String nonce) {
+   _showUrlNotSetAndPrintCurlCommand(String nonce) {
     showAlertDialog(
         context: BuySheet.scaffoldKey.currentContext,
-        title: "Nonce generated but not charged",
+        title: "Payment Complete",
         description:
-            "Check your console for a CURL command to charge the nonce, or replace CHARGE_SERVER_HOST with your server host.");
+            "Press OK or select Ticket in the Home Page to view your ticket");
     printCurlCommand(nonce);
   }
 
@@ -126,7 +127,6 @@ class BuySheetState extends State<BuySheet> {
     if (!_chargeServerHostReplaced) {
       InAppPayments.completeCardEntry(
           onCardEntryComplete: _onCardEntryComplete);
-
       _showUrlNotSetAndPrintCurlCommand(result.nonce);
       return;
     }
@@ -139,7 +139,7 @@ class BuySheetState extends State<BuySheet> {
     }
   }
 
-  Future<void> _onStartCardEntryFlow() async {
+  Future<void> onStartCardEntryFlow() async {
     await InAppPayments.startCardEntryFlow(
         onCardNonceRequestSuccess: _onCardEntryCardNonceRequestSuccess,
         onCardEntryCancel: _onCancelCardEntryFlow,
@@ -147,7 +147,7 @@ class BuySheetState extends State<BuySheet> {
   }
 
   void _onCancelCardEntryFlow() {
-    _showOrderSheet();
+    showOrderSheet();
   }
 
   void _onStartGooglePay() async {
@@ -195,7 +195,7 @@ class BuySheetState extends State<BuySheet> {
   }
 
   void onGooglePayEntryCanceled() {
-    _showOrderSheet();
+    showOrderSheet();
   }
 
   void _onStartApplePay() async {
@@ -255,7 +255,7 @@ class BuySheetState extends State<BuySheet> {
   void _onApplePayEntryComplete() {
     if (_applePayStatus == ApplePayStatus.unknown) {
       // the apple pay is canceled
-      _showOrderSheet();
+      showOrderSheet();
     }
   }
 
@@ -282,18 +282,9 @@ class BuySheetState extends State<BuySheet> {
                       ),
                     ),
                     Container(
-                      child: Text(
-                        "Instantly gain special powers \nwhen ordering a super cookie",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Container(
                       margin: EdgeInsets.only(top: 32),
                       child:
-                          CookieButton(text: "Buy", onPressed: _showOrderSheet),
+                          CookieButton(text: "Start NFC", onPressed: showOrderSheet),
                     ),
                   ],
                 )),

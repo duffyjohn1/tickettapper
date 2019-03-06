@@ -6,6 +6,9 @@ import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 import 'package:tickettapper/InHome/qr_gen.dart';
 import 'dart:io';
 
+import 'package:tickettapper/Payment/Pay_main.dart';
+import 'package:tickettapper/Payment/widgets/buy_sheet.dart';
+
 
 class MyNFC extends StatefulWidget {
   @override
@@ -16,6 +19,8 @@ class _MyNFCState extends State<MyNFC> {
   NfcData _nfcData;
   NFCStatus _status;
   var x = 'False';
+
+  //get showOrderSheet => BuySheetState().showOrderSheet();
 
   @override
   void initState() {
@@ -49,7 +54,7 @@ class _MyNFCState extends State<MyNFC> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => GenerateScreen()),
+          builder: (context) => PayScreen()),
       );
 
     try {
@@ -99,8 +104,8 @@ class _MyNFCState extends State<MyNFC> {
                         child: new Icon(
                           Icons.euro_symbol,
                           color: Colors.black,
+                          ),
                         ),
-                      ),
                       new Container(
                         margin: new EdgeInsets.only(right: 250.0, top: 50.0),
                         height: 80.0,
@@ -111,8 +116,8 @@ class _MyNFCState extends State<MyNFC> {
                         child: new Icon(
                           Icons.home,
                           color: Colors.black,
+                          ),
                         ),
-                      ),
                       new Container(
                         margin: new EdgeInsets.only(left: 250.0, top: 50.0),
                         height: 80.0,
@@ -123,10 +128,10 @@ class _MyNFCState extends State<MyNFC> {
                         child: new Icon(
                           Icons.directions_bus,
                           color: Colors.black,
+                          ),
                         ),
-                      ),
                     ],
-                  ),
+                    ),
                   new Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -135,10 +140,10 @@ class _MyNFCState extends State<MyNFC> {
                         child: new Text(
                           "Ticket Tapper",
                           style: new TextStyle(fontSize: 30.0),
-                        ),
-                      )
+                          ),
+                        )
                     ],
-                  ),
+                    ),
                   new SizedBox(
                     height: 20.0,
                     ),
@@ -151,6 +156,7 @@ class _MyNFCState extends State<MyNFC> {
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(200.0)),
                       onPressed: () {
+                        //BuySheetState().showOrderSheet();
                         startNFC();
                         //sleep(const Duration(seconds:5));
                         if (_nfcData != null) {
@@ -166,4 +172,3 @@ class _MyNFCState extends State<MyNFC> {
   }
 
 }
-

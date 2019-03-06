@@ -61,9 +61,9 @@ class  _LoginPageState extends State<LoginPage> {
                                       border: const OutlineInputBorder(
                                         borderSide: BorderSide(color: Colors.black),
 
-                                      ),
+                                        ),
                                       labelText: 'Email',
-                                    ),
+                                      ),
                                     validator: (input) {
                                       if(input.isEmpty){
                                         return 'Provide an email';
@@ -75,7 +75,7 @@ class  _LoginPageState extends State<LoginPage> {
                                 ),
                               SizedBox(
                                 height: 10.0,
-                              ),
+                                ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
                                 child: TextFormField(
@@ -83,9 +83,9 @@ class  _LoginPageState extends State<LoginPage> {
                                     border: const OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.black),
 
-                                    ),
+                                      ),
                                     labelText: 'Password',
-                                  ),
+                                    ),
                                   validator: (input) {
                                     if(input.length < 6){
                                       return 'Password has to be > 6 characthers';

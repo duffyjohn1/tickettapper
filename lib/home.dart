@@ -3,7 +3,9 @@ import 'package:tickettapper/InHome/add_card.dart';
 import 'package:tickettapper/InHome/attractions.dart';
 import 'package:tickettapper/InHome/pay.dart';
 import 'package:tickettapper/InHome/plan_route.dart';
+import 'package:tickettapper/InHome/qr_gen.dart';
 import 'package:tickettapper/Payment/Pay_main.dart';
+import 'package:tickettapper/Payment/widgets/buy_sheet.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -150,17 +152,17 @@ class MainContent extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => PayScreen(),
+                                    builder: (context) => GenerateScreen(),
                                     ));
                             },
                             child: new Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 new Icon(
-                                  Icons.credit_card,
+                                  Icons.tap_and_play,
                                   color: Colors.black,
                                   ),
-                                new Text("Card Details",
+                                new Text("Ticket",
                                              style: new TextStyle(
                                                  color: Colors.white))
                               ],

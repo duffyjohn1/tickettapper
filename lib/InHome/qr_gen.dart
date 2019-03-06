@@ -26,17 +26,64 @@ class GenerateScreenState extends State<GenerateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Ticket Tapper Ticket'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.share),
-            onPressed: _captureAndSharePng,
-          )
-        ],
-      ),
-      body: _contentWidget(),
-    );
+        body: new SafeArea(
+            top: true,
+            bottom: true,
+            child: new Center(
+                child: ListView(children: <Widget>[
+              new Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  new Container(
+                    height: 80.0,
+                    width: 80.0,
+                    decoration: new BoxDecoration(
+                        borderRadius: new BorderRadius.circular(50.0),
+                        color: Color(0xFF18D191)),
+                    child: new Icon(
+                      Icons.euro_symbol,
+                      color: Colors.black,
+                    ),
+                  ),
+                  new Container(
+                    margin: new EdgeInsets.only(right: 250.0, top: 50.0),
+                    height: 80.0,
+                    width: 80.0,
+                    decoration: new BoxDecoration(
+                        borderRadius: new BorderRadius.circular(50.0),
+                        color: Color(0xFFFC6A7F)),
+                    child: new Icon(
+                      Icons.home,
+                      color: Colors.black,
+                    ),
+                  ),
+                  new Container(
+                    margin: new EdgeInsets.only(left: 250.0, top: 50.0),
+                    height: 80.0,
+                    width: 80.0,
+                    decoration: new BoxDecoration(
+                        borderRadius: new BorderRadius.circular(50.0),
+                        color: Color(0xFFFFCE56)),
+                    child: new Icon(
+                      Icons.directions_bus,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 80.0),
+                    child: new Text(
+                      "Ticket Tapper",
+                      style: new TextStyle(fontSize: 30.0),
+                    ),
+                  )
+                ],
+              ),
+            ]))));
   }
 
   Future<void> _captureAndSharePng() async {
@@ -58,7 +105,7 @@ class GenerateScreenState extends State<GenerateScreen> {
     }
   }
 
-  _contentWidget() {
+  contentWidget() {
     final bodyHeight = MediaQuery.of(context).size.height -
         MediaQuery.of(context).viewInsets.bottom;
     return Container(
@@ -79,26 +126,8 @@ class GenerateScreenState extends State<GenerateScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Expanded(
-                    child: TextField(
-                      controller: _textController,
-                      decoration: InputDecoration(
-                        hintText: "Enter a custom message",
-                        errorText: _inputErrorText,
-                      ),
-                    ),
+                    child: Text("Valid Ticket"),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: FlatButton(
-                      child: Text("SUBMIT"),
-                      onPressed: () {
-                        setState(() {
-                          _dataString = _textController.text;
-                          _inputErrorText = null;
-                        });
-                      },
-                    ),
-                  )
                 ],
               ),
             ),
@@ -109,7 +138,7 @@ class GenerateScreenState extends State<GenerateScreen> {
                 key: globalKey,
                 child: QrImage(
                   data: _dataString,
-                  size: 0.5 * bodyHeight,
+                  size: 0.40 * bodyHeight,
                   onError: (ex) {
                     print("[QR] ERROR - $ex");
                     setState(() {

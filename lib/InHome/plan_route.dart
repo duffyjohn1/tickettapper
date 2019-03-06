@@ -10,7 +10,6 @@ import 'dart:async';
 class Maps extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
         home: Scaffold(
           body: FireMap(),
@@ -43,7 +42,8 @@ class FireMapState extends State<FireMap> {
 
       GoogleMap(
         initialCameraPosition: CameraPosition(
-            target: LatLng(24.142, -110.321),
+            target: LatLng(
+                53.347591, -6.259138),
             zoom: 15
             ),
         onMapCreated: _onMapCreated,
@@ -63,21 +63,6 @@ class FireMapState extends State<FireMap> {
               onPressed: _addMarker //_addGeopoint
               )
           ),
-      /*
-      Positioned(
-          bottom: 50,
-          left: 10,
-          child: Slider(
-            min: 100.0,
-            max: 500.0,
-            divisions: 4,
-            value: radius.value,
-            label: 'Radius ${radius.value}km',
-            activeColor: Colors.green,
-            inactiveColor: Colors.green.withOpacity(0.2),
-            onChanged: _updateQuery,
-            )
-          )*/
     ]);
   }
 
@@ -93,7 +78,7 @@ class FireMapState extends State<FireMap> {
     var marker = MarkerOptions(
         position: mapController.cameraPosition.target,
         icon: BitmapDescriptor.defaultMarker,
-        infoWindowText: InfoWindowText('Magic Marker', '🍄🍄🍄')
+        infoWindowText: InfoWindowText('Destenation', '        Pin')
         );
 
     mapController.addMarker(marker);

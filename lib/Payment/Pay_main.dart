@@ -13,7 +13,8 @@ const String squareApplicationId = "sq0idp-uTlGJJXKJCXIGJn0YTlxzQ";
 const String squareLocationId = "BT4ZW0W2NM5JG";
 //const String applePayMerchantId = "REPLACE_ME";
 
-//TODO - assets,
+//TODO - Nonce cnon:CBASEOUR395ND0AiJDZh7nBpCuU
+
 
 class PayScreen extends StatefulWidget {
   PayScreenState createState() => PayScreenState();
