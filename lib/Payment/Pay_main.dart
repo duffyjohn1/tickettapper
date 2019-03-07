@@ -79,6 +79,7 @@ class PayScreenState extends State<PayScreen> {
   }
 
   Widget build(BuildContext context) => MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(canvasColor: Colors.white),
       home: Scaffold(
           body: isLoading

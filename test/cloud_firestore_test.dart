@@ -272,7 +272,7 @@ void main() {
       });
       test('listen', () async {
         final QuerySnapshot snapshot =
-            await collectionReference.snapshots().first;
+        await collectionReference.snapshots().first;
         final DocumentSnapshot document = snapshot.documents[0];
         expect(document.documentID, equals('0'));
         expect(document.reference.path, equals('foo/0'));

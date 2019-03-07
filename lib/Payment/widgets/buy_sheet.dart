@@ -48,7 +48,7 @@ class BuySheetState extends State<BuySheet> {
   bool get _applePayMerchantIdSet => widget.applePayMerchantId != "REPLACE_ME";
 
   void showOrderSheet() async {
-    sleep(const Duration(seconds:2));
+    sleep(const Duration(seconds:1));
     var selection =
         await custom_modal_bottom_sheet.showModalBottomSheet<PaymentType>(
             context: BuySheet.scaffoldKey.currentState.context,
@@ -91,12 +91,12 @@ class BuySheetState extends State<BuySheet> {
         '}\'');
   }
 
-   _showUrlNotSetAndPrintCurlCommand(String nonce) {
+  void _showUrlNotSetAndPrintCurlCommand(String nonce) {
     showAlertDialog(
         context: BuySheet.scaffoldKey.currentContext,
-        title: "Payment Complete",
+        title: "Payment Sucessful",
         description:
-            "Press OK or select Ticket in the Home Page to view your ticket");
+        "Check your console for a CURL command to charge the nonce, or replace CHARGE_SERVER_HOST with your server host.");
     printCurlCommand(nonce);
   }
 
@@ -263,7 +263,7 @@ class BuySheetState extends State<BuySheet> {
   }
 
   NFCpay(){
-    //MyNFCState().startNFC();
+    MyNFCState().startNFC();
     showOrderSheet();
   }
 

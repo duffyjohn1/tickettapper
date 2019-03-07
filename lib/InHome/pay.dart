@@ -3,11 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
-import 'package:tickettapper/InHome/qr_gen.dart';
-import 'dart:io';
 
-import 'package:tickettapper/Payment/Pay_main.dart';
-import 'package:tickettapper/Payment/widgets/buy_sheet.dart';
 
 
 class MyNFC extends StatefulWidget {
