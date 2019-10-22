@@ -7,10 +7,6 @@ import 'package:tickettapper/stacked_icons.dart';
 import 'home.dart';
 
 
-// Problem getting google sign in to go to home page while requiring sign in
-// Can get it to sign in and go to home but can exit out of sign in and still go to home
-// Context builder only works in widget build but then handle sign in won't work from main
-
 // Shows fix https://medium.com/flutterpub/flutter-auth-with-google-f3c3aa0d0ccc
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -20,7 +16,6 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
   );
 
-/*
 class GoogleLogin extends StatelessWidget {
 
   @override
@@ -159,7 +154,7 @@ initLogin() {
   });
   _googleSignIn.signInSilently().whenComplete(() => dismissLoading());
 }
-*/
+
 
 
 Future<void> handleSignIn() async {
